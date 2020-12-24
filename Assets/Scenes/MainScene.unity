@@ -3357,6 +3357,11 @@ PrefabInstance:
       propertyPath: speedMultiplier
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 142462114116109389, guid: e58a8494f35e17f45ba5bbffdfb92517,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 227231499234540014, guid: e58a8494f35e17f45ba5bbffdfb92517,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

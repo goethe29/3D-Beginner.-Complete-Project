@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float turnSpeed = 20f;
-    public float moveSpeed = 1;
+    [SerializeField] private float _turnSpeed = 20f;
+    [SerializeField] private float _moveSpeed = 1;
 
     Animator m_Animator;
     Rigidbody m_Rigidbody;
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         
         m_Movement.Set(horizontal, 0f, vertical);
         m_Movement.Normalize ();
-        m_Movement *= moveSpeed;
+        m_Movement *= _moveSpeed;
 
         bool hasHorizontalInput = !Mathf.Approximately (horizontal, 0f);
         bool hasVerticalInput = !Mathf.Approximately (vertical, 0f);
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             m_AudioSource.Stop ();
         }
 
-        Vector3 desiredForward = Vector3.RotateTowards (transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
+        Vector3 desiredForward = Vector3.RotateTowards (transform.forward, m_Movement, _turnSpeed * Time.deltaTime, 0f);
         m_Rotation = Quaternion.LookRotation (desiredForward);
     }
 

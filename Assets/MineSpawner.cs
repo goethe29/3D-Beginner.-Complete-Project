@@ -10,7 +10,7 @@ public class MineSpawner : MonoBehaviour
     private void Update()
     {
         // Если нажата кнопка  
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Instantiate(_mine, _mineSpawnPlace.position, _mineSpawnPlace.rotation);
             // Создаем _mine в точке _mineSpawnPlace

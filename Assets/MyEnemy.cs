@@ -14,7 +14,7 @@ public class MyEnemy : MonoBehaviour
 
         if (_health <= 0)
         {
-            Die();
+            Invoke("Die", 1);
         }
     }
 

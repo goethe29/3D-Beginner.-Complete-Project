@@ -843,9 +843,10 @@ GameObject:
   - component: {fileID: 2701863865896896819}
   - component: {fileID: 7438738072484405706}
   - component: {fileID: 3576288450122217075}
-  - component: {fileID: 142462114116109389}
   - component: {fileID: 355967702596757054}
   - component: {fileID: 685090927300085920}
+  - component: {fileID: 4619639581116883668}
+  - component: {fileID: 1536282801701518058}
   m_Layer: 0
   m_Name: JohnLemon
   m_TagString: Untagged
@@ -918,19 +919,6 @@ CapsuleCollider:
   m_Height: 1.4
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
---- !u!114 &142462114116109389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6077229646317852079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56b2cfb9174a093419d0f8db96a60eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turnSpeed: 20
 --- !u!82 &355967702596757054
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1035,6 +1023,35 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6077229646317852079}
   m_Enabled: 1
+--- !u!114 &4619639581116883668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077229646317852079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd019350dc02ec4bbd145f03dddf3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mine: {fileID: 8242263447845017757, guid: b189964baa5fb874f9fbc49661696336, type: 3}
+  _mineSpawnPlace: {fileID: 4425383467037466535}
+--- !u!114 &1536282801701518058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077229646317852079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b2cfb9174a093419d0f8db96a60eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _turnSpeed: 20
+  _moveSpeed: 1.5
+  _jumpForce: 1
 --- !u!1 &7028247037451646163
 GameObject:
   m_ObjectHideFlags: 0

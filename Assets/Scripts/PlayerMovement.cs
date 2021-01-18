@@ -5,11 +5,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _turnSpeed = 20f;
-    [SerializeField] private float _moveSpeed = 1;
-    [SerializeField] private float _jumpForce = 1;
+    [SerializeField] private float _moveSpeed = 2f;
+    [SerializeField] private float _jumpForce = 150f;
     private int _maxJumpNum = 2;
-    private bool _isGrounded;
+    private bool _isGrounded = true;
     private int _jumpCount = 0;
+
+    private float _horizontal;
+    private float _vertical;
+    private bool _jump;
 
     Animator m_Animator;
     Rigidbody m_Rigidbody;
@@ -24,18 +28,27 @@ public class PlayerMovement : MonoBehaviour
         m_AudioSource = GetComponent<AudioSource> ();
     }
 
+    private void Update() {
+        _horizontal = Input.GetAxis ("Horizontal");
+        _vertical = Input.GetAxis ("Vertical");
+        _jump = Input.GetButtonDown("Jump");
+
+        if (_jump && _jumpCount < _maxJumpNum)
+        {
+            m_Rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _isGrounded = false;
+            _jumpCount++;
+        }
+    }
+    
     void FixedUpdate ()
-    {
-        float horizontal = Input.GetAxis ("Horizontal");
-        float vertical = Input.GetAxis ("Vertical");
-        bool isJumping = Input.GetButtonDown("Jump");
-        
-        m_Movement.Set(horizontal, 0f, vertical);
+    {       
+        m_Movement.Set(_horizontal, 0f, _vertical);
         m_Movement.Normalize ();
         m_Movement *= _moveSpeed;
 
-        bool hasHorizontalInput = !Mathf.Approximately (horizontal, 0f);
-        bool hasVerticalInput = !Mathf.Approximately (vertical, 0f);
+        bool hasHorizontalInput = !Mathf.Approximately (_horizontal, 0f);
+        bool hasVerticalInput = !Mathf.Approximately (_vertical, 0f);
         bool isWalking = hasHorizontalInput || hasVerticalInput;
         
         if (isWalking && _isGrounded)
@@ -55,13 +68,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 desiredForward = Vector3.RotateTowards (transform.forward, m_Movement, _turnSpeed * Time.deltaTime, 0f);
         m_Rotation = Quaternion.LookRotation (desiredForward);
 
-        if (isJumping && _jumpCount < _maxJumpNum)
-        {
-            m_Rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-            _isGrounded = false;
-            _jumpCount++;
-        }
-
         m_Rigidbody.MovePosition(m_Rigidbody.position + m_Movement * Time.deltaTime);
         m_Rigidbody.MoveRotation(m_Rotation);
     }
@@ -71,9 +77,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void OnCollisionStay()
+    void OnCollisionEnter(Collision other)
     {
-        _isGrounded = true;
-        _jumpCount = 0;
+        if(other.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = true;
+            _jumpCount = 0;
+        }  
     }
 }

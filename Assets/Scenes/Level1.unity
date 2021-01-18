@@ -12097,7 +12097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4195891706174378, guid: d6f7474cae3e0ab43bce6c8505c5db19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4195891706174378, guid: d6f7474cae3e0ab43bce6c8505c5db19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21629,7 +21629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 6077229646317852079}
   _maxViewDistance: 10
-  _calmDownDelay: 3
+  _calmDownDelaySec: 1
 --- !u!1001 &1097054007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23244,7 +23244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4195891706174378, guid: d6f7474cae3e0ab43bce6c8505c5db19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4195891706174378, guid: d6f7474cae3e0ab43bce6c8505c5db19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23901,7 +23901,7 @@ MeshCollider:
   m_GameObject: {fileID: 1227857785}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -33372,7 +33372,7 @@ GameObject:
   - component: {fileID: 1669225384}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -43786,6 +43786,11 @@ PrefabInstance:
       propertyPath: _moveSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1536282801701518058, guid: e58a8494f35e17f45ba5bbffdfb92517,
+        type: 3}
+      propertyPath: _jumpForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 1622180850658006996, guid: e58a8494f35e17f45ba5bbffdfb92517,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -44139,7 +44144,7 @@ PrefabInstance:
     - target: {fileID: 7438738072484405706, guid: e58a8494f35e17f45ba5bbffdfb92517,
         type: 3}
       propertyPath: m_Mass
-      value: 0.5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7579946599890410729, guid: e58a8494f35e17f45ba5bbffdfb92517,
         type: 3}

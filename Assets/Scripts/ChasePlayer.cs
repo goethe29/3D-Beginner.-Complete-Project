@@ -7,7 +7,7 @@ public class ChasePlayer : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     [SerializeField] private float _maxViewDistance = 10.0f;
-    [SerializeField] private float _calmDownDelay = 1.0f;
+    [SerializeField] private float _calmDownDelaySec = 1.0f;
     
     private string _playerTag;
     private Transform _transform;
@@ -19,6 +19,8 @@ public class ChasePlayer : MonoBehaviour
     private float _currentViewDistance;
     private bool _inChase;
     private bool _isCalmingDown;
+    private float _timerSec = 0.0f;
+    private float _refreshStatusIntervalSec = 1.0f;
     
 
     // Start is called before the first frame update
@@ -35,7 +37,12 @@ public class ChasePlayer : MonoBehaviour
     private void FixedUpdate() 
     {
         LookAtPlayer();
-        RefreshStatus();
+        _timerSec += Time.deltaTime;
+        if (_timerSec >= _refreshStatusIntervalSec)
+        {
+            _timerSec -= _refreshStatusIntervalSec;
+            RefreshStatus();
+        }
     }
 
     private void LookAtPlayer() 
@@ -96,7 +103,7 @@ public class ChasePlayer : MonoBehaviour
     private IEnumerator CalmDown()
     {
         _isCalmingDown = true;
-        yield return new WaitForSeconds(_calmDownDelay);
+        yield return new WaitForSeconds(_calmDownDelaySec);
         
         _inChase = false;
         _patrolScript.enabled = true;

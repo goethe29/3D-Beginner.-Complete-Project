@@ -5,6 +5,7 @@ using UnityEngine;
 public class MyEnemy : MonoBehaviour
 {
     [SerializeField] private int _health;
+    [SerializeField] private GameEvent _onEnemyDie;
 
     public void Hurt(int damage)
     {
@@ -20,6 +21,7 @@ public class MyEnemy : MonoBehaviour
 
     private void Die()
     {
+        _onEnemyDie.Raise();
         Destroy(gameObject);
     }
 }

@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
-    private Renderer _renderer;
-    private Transform _transform;
+    //private InventorySystem _playerInventory;
+    [SerializeField] InventoryItem _item;
     
     // Start is called before the first frame update
     void Start()
     {
-        _renderer = GetComponentInChildren<Renderer>();
-        _transform = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -22,10 +20,17 @@ public class Collectable : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.E) && other.gameObject.CompareTag("Player"))
+        var collidedObject = other.gameObject;
+        if (Input.GetKeyDown(KeyCode.E) && collidedObject.CompareTag("Player"))
         {
-            _renderer.enabled = false;
-            _transform.SetParent(other.transform);
+            AddToInventory(collidedObject);
+            Destroy(gameObject);
         }
+    }
+
+    private void AddToInventory (GameObject player) 
+    {
+        var inventory = player.GetComponentInChildren<InventorySystem>();
+        inventory.AddToInventory(_item);
     }
 }

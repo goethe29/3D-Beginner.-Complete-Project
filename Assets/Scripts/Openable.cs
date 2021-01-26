@@ -7,50 +7,23 @@ public class Openable : MonoBehaviour
     private enum Type { Door, Chest }
     [SerializeField] private Type _type = Type.Door;
 
-    private enum Status { Locked, Opened }
+    private enum Status { Locked, Unlocked }
     [SerializeField] private Status _status = Status.Locked;
 
-    [SerializeField] private List<GameObject> _items;
+    [SerializeField] private List<InventoryItem> _items;
 
     [SerializeField] private AudioClip _lockedSound;
     [SerializeField] private AudioClip _openingSound;
 
-    [SerializeField] private GameObject _key;
-    [SerializeField] private GameObject _player;
+    [SerializeField] private InventoryItem _key;
+    private GameObject _player;
+    private InventorySystem _inventory;
 
     private Vector3 _position;
 
-    // Start is called before the first frame update
     void Start()
     {
         _position = GetComponent<Transform>().position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void DeactivateDoor() 
-    {
-        gameObject.SetActive(false);
-    }
-    
-    void Open() 
-    {
-        if (_status == Status.Opened || _key.transform.parent == _player.transform)
-        {
-            if (_type == Type.Door)
-            {
-                AudioSource.PlayClipAtPoint(_openingSound, _position);
-                Invoke("DeactivateDoor", 1);
-            }
-        }
-        else 
-        {
-            AudioSource.PlayClipAtPoint(_lockedSound, _position);
-        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -58,7 +31,58 @@ public class Openable : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && other.gameObject.CompareTag("Player"))
         {
-            Open();
+            _player = other.gameObject;
+            _inventory = _player.GetComponentInChildren<InventorySystem>();
+            CheckLock();
         }
     }
+
+    void CheckLock () 
+    {
+        if (_status == Status.Unlocked || _key == null)
+        {
+            Open();
+        }
+
+        else
+        {
+            if (_inventory.HasItem(_key))
+            {
+                Open();
+            }
+
+            else
+            {
+                AudioSource.PlayClipAtPoint(_lockedSound, _position);
+            }
+        }
+    }
+
+    void Open() 
+    {
+        AudioSource.PlayClipAtPoint(_openingSound, _position);
+
+        if (_type == Type.Door)
+        {
+            Invoke("DeactivateDoor", 1);
+        }
+
+        if (_type == Type.Chest)
+        {
+            TakeItems();
+        }
+    }
+
+    void DeactivateDoor() 
+    {
+        gameObject.SetActive(false);
+    }
+    
+    void TakeItems() 
+    {
+        foreach (var item in _items) 
+        {
+            _inventory.AddToInventory(item);
+        }
+    }  
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collectable : MonoBehaviour
 {
     //private InventorySystem _playerInventory;
+    [SerializeField] GameObject _popup;
     [SerializeField] InventoryItem _item;
     
     // Start is called before the first frame update
@@ -25,6 +26,20 @@ public class Collectable : MonoBehaviour
         {
             AddToInventory(collidedObject);
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _popup.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _popup.SetActive(false);
         }
     }
 

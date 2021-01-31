@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Openable : MonoBehaviour
 {
+    [SerializeField] private GameObject _popup;
     private enum Type { Door, Chest }
     [SerializeField] private Type _type = Type.Door;
 
@@ -26,6 +27,20 @@ public class Openable : MonoBehaviour
         _position = GetComponent<Transform>().position;
     }
 
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _popup.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _popup.SetActive(false);
+        }
+    }
+    
     private void OnTriggerStay(Collider other)
     {
 

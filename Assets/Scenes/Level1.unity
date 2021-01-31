@@ -24190,7 +24190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boolet: {fileID: 754995724227626103, guid: 6d85d36af420b71479827165762a9984, type: 3}
-  _shootForce: 10
+  _shootForce: 5000
 --- !u!1001 &1201337633
 PrefabInstance:
   m_ObjectHideFlags: 0

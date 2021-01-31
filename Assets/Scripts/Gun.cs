@@ -5,8 +5,8 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     Vector3 _position;
-    [SerializeField] GameObject _boolet;
-    [SerializeField] private float _shootForce = 10f;
+    [SerializeField] GameObject _bullet;
+    [SerializeField] private float _shootForce = 5000f;
     private Camera cam;
 
     // Start is called before the first frame update
@@ -20,17 +20,22 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            _position = gameObject.transform.position;
+            Shot();
+        }
+    }
+
+    void Shot() 
+    {
+        _position = gameObject.transform.position;
             
             //var target = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5.3f));
             //var targetDirection = target - _position; --- to shot at mouse position
 
             var targetDirection = gameObject.transform.forward; //to shot forward
 
-            var boolet = Instantiate(_boolet, _position, Quaternion.identity );
-            var booletBody = boolet.GetComponent<Rigidbody>();
+            var bullet = Instantiate(_bullet, _position, Quaternion.identity );
+            var bulletBody = bullet.GetComponent<Rigidbody>();
 
-            booletBody.AddForce(targetDirection * _shootForce); 
-        }
+            bulletBody.AddForce(targetDirection * _shootForce); 
     }
 }

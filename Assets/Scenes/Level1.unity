@@ -25110,7 +25110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea9fa1142ece2944b131d09d0f46bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boolet: {fileID: 754995724227626103, guid: 6d85d36af420b71479827165762a9984, type: 3}
+  _bullet: {fileID: 754995724227626103, guid: 6d85d36af420b71479827165762a9984, type: 3}
   _shootForce: 5000
 --- !u!1001 &1201337633
 PrefabInstance:

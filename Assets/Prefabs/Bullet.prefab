@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 8484995468898089726}
   - component: {fileID: 1852999884323896800}
   - component: {fileID: 3627460453092108142}
+  - component: {fileID: -6190909806811991666}
   m_Layer: 0
-  m_Name: Boolet
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754995724227626103}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.537, y: 1, z: -8.625}
   m_LocalScale: {x: 0.084465, y: 0.084465, z: 0.084465}
   m_Children: []
@@ -105,8 +106,23 @@ Rigidbody:
   m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6190909806811991666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754995724227626103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626daa8663c960c4fa325992d7503d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeTimeInSec: 2
+  _lifeTimeAfterCollisionInSec: 1
+  _burst: {fileID: 7909470659336464529, guid: 035b63fc28ad03746b01a421dd784764, type: 3}

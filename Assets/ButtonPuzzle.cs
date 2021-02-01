@@ -7,6 +7,7 @@ public class ButtonPuzzle : MonoBehaviour
     
     [SerializeField] private float _pushDistance = 1;
     [SerializeField] private List<GameObject> _pushingObjects;
+    [SerializeField] private Color _initialColor;
     [SerializeField] private Color _colorActivated = Color.green;
     [SerializeField] private Color _colorPushedWrong = Color.red;
     [SerializeField] private GameObject _key;
@@ -16,21 +17,23 @@ public class ButtonPuzzle : MonoBehaviour
     private Transform _transform;
     private MeshRenderer _renderer;
     private MeshRenderer _keyRenderer;
-    private Color _initialColor;
     private Color _keyInitialColor;
 
     private void Start() {
         _transform = gameObject.transform;
         _pushingObjects = new List<GameObject>();
         _renderer = GetComponent<MeshRenderer>();
-        _initialColor = _renderer.material.color;
+        //_initialColor = _renderer.material.color;
+        _renderer.material.color = _initialColor;
         if (_key) CacheKey();
     }
 
     private void CacheKey()
     {
         _keyRenderer = _key.GetComponent<MeshRenderer>();
-        _keyInitialColor = _keyRenderer.material.color;
+        //_keyInitialColor = _keyRenderer.material.color;
+        _keyInitialColor = _initialColor;
+        _keyRenderer.material.color = _keyInitialColor;
     }
     
     private void OnTriggerEnter(Collider other) {

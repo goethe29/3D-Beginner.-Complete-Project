@@ -5,13 +5,14 @@ using UnityEngine;
 public class ButtonPuzzle : MonoBehaviour
 {
     
-    [SerializeField] private float _pushDistance = 1;
-    [SerializeField] private List<GameObject> _pushingObjects;
+    [SerializeField] private float _pushDistance = 0.2f;
     [SerializeField] private Color _initialColor;
     [SerializeField] private Color _colorActivated = Color.green;
     [SerializeField] private Color _colorPushedWrong = Color.red;
     [SerializeField] private GameObject _key;
+    [SerializeField] private PuzzleStatus _puzzleStatus;
     
+    private List<GameObject> _pushingObjects;
     private bool _isActivated = false;
     private bool _isPushed = false;
     private Transform _transform;
@@ -70,25 +71,24 @@ public class ButtonPuzzle : MonoBehaviour
         {
             _keyRenderer.material.color = _keyInitialColor;
         }
-        
-        if (_isPushed)
+
+
+        if (_isPushed && (_pushingObjects.Contains(_key) || !_key))
         {
-            if (_pushingObjects.Contains(_key) || !_key)
-            {
-                _isActivated = true;
+                _isActivated = _puzzleStatus.Solved = true;
                 _renderer.material.color = _colorActivated;
                 if(_key)
-                    _keyRenderer.material.color = _colorActivated;
-            } else
-            {
-                 _isActivated = false;
-                 _renderer.material.color = _colorPushedWrong;
-            }  
+                    _keyRenderer.material.color = _colorActivated; 
         } else
         {
-            _isActivated = false;
-            _renderer.material.color = _initialColor;
+            _isActivated = _puzzleStatus.Solved = false;
+            if (_isPushed)
+            {
+                _renderer.material.color = _colorPushedWrong;
+            } else
+            {
+                _renderer.material.color = _initialColor;
+            }
         }
-        
     } 
 }

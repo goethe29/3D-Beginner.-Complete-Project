@@ -8,7 +8,7 @@ public class SpawnGameObjects : MonoBehaviour {
 	public float minSecondsBetweenSpawning = 3.0f;
 	public float maxSecondsBetweenSpawning = 6.0f;
 	
-	public GameObject chaseTarget;
+	public Transform chaseTarget;
 	
 	private float savedTime;
 	private float secondsBetweenSpawning;
@@ -35,9 +35,10 @@ public class SpawnGameObjects : MonoBehaviour {
 		GameObject clone = Instantiate(spawnPrefab, transform.position, transform.rotation) as GameObject;
 
 		// set chaseTarget if specified
-		if ((chaseTarget != null) && (clone.gameObject.GetComponent<ChasePlayer> () != null))
+		if ((chaseTarget != null) && (clone.gameObject.GetComponent<Chaser> () != null))
 		{
-			clone.gameObject.GetComponent<ChasePlayer>()._player = chaseTarget;
+			clone.gameObject.GetComponent<Chaser>().SetTarget(chaseTarget);
 		}
 	}
 }
+                      

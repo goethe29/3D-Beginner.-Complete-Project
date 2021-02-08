@@ -12,15 +12,20 @@ public class WaypointPatrol : MonoBehaviour
 
     void Start ()
     {
-        navMeshAgent.SetDestination (waypoints[0].position);
+        if(waypoints.Length > 0)
+            navMeshAgent.SetDestination (waypoints[0].position);
     }
 
     void Update ()
     {
-        if(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        if(waypoints.Length > 0)
         {
-            m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
-            navMeshAgent.SetDestination (waypoints[m_CurrentWaypointIndex].position);
+            if(navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            {
+                m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+                navMeshAgent.SetDestination (waypoints[m_CurrentWaypointIndex].position);
+            }
         }
+        
     }
 }

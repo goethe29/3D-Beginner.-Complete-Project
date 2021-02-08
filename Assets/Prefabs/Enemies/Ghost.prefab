@@ -455,6 +455,7 @@ GameObject:
   - component: {fileID: 1176990128951978394}
   - component: {fileID: 6986812540457888193}
   - component: {fileID: -2215601961162701080}
+  - component: {fileID: -9043817272816125508}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -573,7 +574,8 @@ AudioSource:
   m_GameObject: {fileID: 5075534488604402034}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6599201080900729872, guid: 370ba00a675c4224c9465f22d940d3c7,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 98ea14dfdb9dce74a976520f134fd1a2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.4
@@ -674,6 +676,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 1
   _onEnemyDie: {fileID: 11400000, guid: 8fd59aa53cef0474e8c5c711421742e5, type: 2}
+  _freezeOnDamage: 1
+--- !u!114 &-9043817272816125508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075534488604402034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b6ac35a5ea9834da3ea45acff6989d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _maxViewDistance: 10
+  _calmDownDelaySec: 1
 --- !u!1 &5863192054190611860
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +982,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4953394414445174501, guid: 8a6f7024e2eb90140bdf570ef653bac8,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953394414445174501, guid: 8a6f7024e2eb90140bdf570ef653bac8,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -979,6 +1002,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4953394414445174501, guid: 8a6f7024e2eb90140bdf570ef653bac8,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953394414445174501, guid: 8a6f7024e2eb90140bdf570ef653bac8,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -991,16 +1019,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953394414445174501, guid: 8a6f7024e2eb90140bdf570ef653bac8,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953394414445174501, guid: 8a6f7024e2eb90140bdf570ef653bac8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4953394414445174501, guid: 8a6f7024e2eb90140bdf570ef653bac8,
         type: 3}

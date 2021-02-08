@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class ChasePlayer : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
+    [SerializeField] public GameObject _player;
     [SerializeField] private float _maxViewDistance = 10.0f;
     [SerializeField] private float _calmDownDelaySec = 1.0f;
     
